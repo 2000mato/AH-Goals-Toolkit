@@ -22,13 +22,14 @@ function Prompt() {
 
     // Handle goal submission
     const submitGoal = () => {
-        setGoalDetails({
-            goal: goalText,
-            action: actionText,
+        const details = {
+            goalText: goalText,
+            actionText: actionText,
             startDate: startDate,
             endDate: endDate
-        });
-        setShowModal(false);  // Close the modal
+        };
+        setGoalDetails(details);
+        setShowModal(false);
     }
 
     if (!showModal) {
