@@ -1,5 +1,3 @@
 .goal-prompt-container {
-    border-style: solid;
-    border-color: red;
-    border-radius: 2px;
+    color: gray;
 }
