@@ -7,12 +7,21 @@ import "./GoalPrompt.css";
 
 function GoalPrompt() {
     // add a usestate method later based on clicking a button to reset the goal or intitialize the goal
+    const [showModal, setShowModal] = useState(true);
     const [startDate, setStartDate] = useState(new Date());
     const currentDate = new Date();
     const threeMonthsFromNow =  new Date(currentDate.setMonth(currentDate.getMonth() + 3));
 
     const [endDate, setEndDate] = useState(threeMonthsFromNow); // If you need an end date as well
 
+
+    const closeModal = () => {
+        setShowModal(false);
+    }
+    
+    if (!showModal) {
+        return null;  // Don't render anything if showModal is false
+    }
 
     return (
         <div className = "goal-prompt-container">
@@ -25,6 +34,7 @@ function GoalPrompt() {
             <div>
             <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
             <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+            <button className = "goal-prompt-button" onClick={closeModal}>Create new goal</button>
         </div>
         </div>
         
