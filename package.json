@@ -1,0 +1,19 @@
+{
+  "name": "ah-goals-toolkit",
+  "version": "1.0.0",
+  "description": "A representation of the goals toolkit provided in the Huberman Lab Podcast Episode titled \"Goals Toolkit: How to Set &amp; Achieve Your Goals\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2000mato/AH-Goals-Toolkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2000mato/AH-Goals-Toolkit/issues"
+  },
+  "homepage": "https://github.com/2000mato/AH-Goals-Toolkit#readme"
+}
