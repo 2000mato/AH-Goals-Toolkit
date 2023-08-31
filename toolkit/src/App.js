@@ -1,14 +1,15 @@
 import './App.css';
-import GoalPrompt from './Prompt';
+import Prompt from './Prompt';
 import ContextProvider from './ContextProvider';
-
+import Toolbar from './Toolbar';
 
 function App() {
   return (
     <div className="App">
       <ContextProvider >
+        <Toolbar />
       <header className="App-header">
-        <GoalPrompt />
+        <Prompt />
       </header>
       </ContextProvider>
     </div>

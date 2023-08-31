@@ -1,13 +1,14 @@
 import React from "react";   
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Prompt.css";
+import Context from "./Context";
 
 
-function GoalPrompt() {
+function Prompt() {
     // add a usestate method later based on clicking a button to reset the goal or intitialize the goal
-    const [showModal, setShowModal] = useState(true);
+    const { showModal, setShowModal } = useContext(Context);
     //default date starts at today
     const [startDate, setStartDate] = useState(new Date()); 
     // variables are used to set an end date of the advised period of 3 month period of goal pursuit
@@ -42,4 +43,4 @@ function GoalPrompt() {
     )
 }
 
-export default GoalPrompt;
+export default Prompt;
