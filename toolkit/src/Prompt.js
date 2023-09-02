@@ -21,8 +21,29 @@ function Prompt() {
     const [goalText, setGoalText] = useState('');
     const [actionText, setActionText] = useState('');
 
+
+    // Checks if input is valid
+    const isValidInput = (input) => {
+        if(!input) return false; // checks if input is empty or undefined
+        if(typeof input !== "string") return false; // checks if input is not a string
+        if(input.length < 3) return false; // example: check if input is too short
+        // Add more validations as needed
+        return true;
+    }
+
+    if (!showPrompt) {
+        return null;  // Don't render anything if showPrompt is false
+    }
+
+
+    
     // Handle goal submission
     const submitGoal = () => {
+        if(!isValidInput(goalText) ||!isValidInput(actionText)){
+            alert("Please enter a valid goal and action");
+            return;
+        }
+    
         // The values for this object are taken in from user input fields
         const details = {
             goalText: goalText,
@@ -36,9 +57,6 @@ function Prompt() {
         setShowGoal(true);
     }
 
-    if (!showPrompt) {
-        return null;  // Don't render anything if showPrompt is false
-    }
 
     return (
         <div className="goal-prompt-container">
