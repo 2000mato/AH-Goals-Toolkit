@@ -3,9 +3,7 @@ import Context from './Context';
 
 function Toolbar() {
 
-
-    const {setShowModal} = useContext(Context);
-    const {defaultGoalDetails, setGoalDetails} = useContext(Context);
+    const {defaultGoalDetails, setGoalDetails, setShowModal} = useContext(Context);
 
     const toggleModal = () => {
         setShowModal(prevState => !prevState);
