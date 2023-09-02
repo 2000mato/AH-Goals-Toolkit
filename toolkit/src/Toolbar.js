@@ -6,7 +6,7 @@ function Toolbar() {
     const {defaultGoalDetails, setGoalDetails, setShowModal} = useContext(Context);
 
     const toggleModal = () => {
-        setShowModal(prevState => !prevState);
+        setShowModal(true);
     } 
 
 
