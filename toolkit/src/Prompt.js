@@ -7,12 +7,13 @@ import Context from "./Context";
 
 
 function Prompt() {
-    // Context
+    // Context allows user input to be sent to context provider
     const { showModal, setShowModal, setGoalDetails } = useContext(Context);
 
-    // Date related states
+    // Date related states for establishing time period
     const [startDate, setStartDate] = useState(new Date()); 
     const currentDate = new Date();
+    // Three month period of goal pursuit is ideal, set by default, can be changed
     const threeMonthsFromNow = new Date(currentDate.setMonth(currentDate.getMonth() + 3));
     const [endDate, setEndDate] = useState(threeMonthsFromNow);
 
@@ -22,12 +23,14 @@ function Prompt() {
 
     // Handle goal submission
     const submitGoal = () => {
+        // The values for this object are taken in from user input fields
         const details = {
             goalText: goalText,
             actionText: actionText,
             startDate: startDate,
             endDate: endDate
         };
+        // Collected values are sent to the context provider
         setGoalDetails(details);
         setShowModal(false);
     }
