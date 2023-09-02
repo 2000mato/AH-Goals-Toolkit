@@ -8,7 +8,7 @@ import Context from "./Context";
 
 function Prompt() {
     // Context allows user input to be sent to context provider
-    const { showModal, setShowModal, setGoalDetails } = useContext(Context);
+    const { showPrompt, setShowPrompt, setGoalDetails } = useContext(Context);
 
     // Date related states for establishing time period
     const [startDate, setStartDate] = useState(new Date()); 
@@ -32,11 +32,11 @@ function Prompt() {
         };
         // Collected values are sent to the context provider
         setGoalDetails(details);
-        setShowModal(false);
+        setShowPrompt(false);
     }
 
-    if (!showModal) {
-        return null;  // Don't render anything if showModal is false
+    if (!showPrompt) {
+        return null;  // Don't render anything if showPrompt is false
     }
 
     return (

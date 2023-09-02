@@ -3,16 +3,16 @@ import Context from './Context';
 
 function Toolbar() {
 
-    const {defaultGoalDetails, setGoalDetails, setShowModal} = useContext(Context);
+    const {defaultGoalDetails, setGoalDetails, setShowPrompt} = useContext(Context);
 
-    const toggleModal = () => {
-        setShowModal(true);
+    const togglePrompt = () => {
+        setShowPrompt(true);
     } 
 
 
     return(
         <div className='toolbar'>
-            <button className='btn btn-outline-secondary' onClick={toggleModal}>Set a goal</button>
+            <button className='btn btn-outline-secondary' onClick={togglePrompt}>Set a goal</button>
             <button className='btn btn-outline-secondary' onClick={() => setGoalDetails(defaultGoalDetails)}>Clear Goal</button>
         </div>
     )
