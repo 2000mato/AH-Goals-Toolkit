@@ -4,9 +4,11 @@ import Context from './Context';
 
 function DefinedGoal() {
 
-    const { goalDetails } = useContext(Context);
+    const { goalDetails, showGoal } = useContext(Context);
 
-
+    if (!showGoal) {
+        return null;  // Don't render the DefinedGoal component if showDefinedGoal is false
+    }
 
     return(
         <div>
