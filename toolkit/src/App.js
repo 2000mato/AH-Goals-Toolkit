@@ -10,9 +10,7 @@ function App() {
       <ContextProvider >
         <Toolbar />
         <DefinedGoals />
-      <header className="App-header">
         <Prompt />
-      </header>
       </ContextProvider>
     </div>
   );
