@@ -6,9 +6,10 @@ function Timer(props) {
     const totalSeconds = initialMinutes * 60; // Convert minutes to seconds.
     const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
     const [percentage, setPercentage] = useState(100);
+    const [timerStatus, setTimerStatus] = useState('stopped'); // possible values: 'stopped', 'running', 'paused'
 
     useEffect(() => {
-        if (secondsRemaining <= 0) return;
+        if (secondsRemaining <= 0 || timerStatus !== 'running') return;
         const interval = setInterval(() => {
             setSecondsRemaining(prevSeconds => {
                 const newSeconds = prevSeconds - 1;
@@ -18,7 +19,23 @@ function Timer(props) {
         }, 1000);
     
         return () => clearInterval(interval);
-    }, [secondsRemaining, totalSeconds]);
+    }, [secondsRemaining, totalSeconds, timerStatus]);
+
+
+    const startTimer = () => {
+        setTimerStatus('running');
+    }
+    
+    const pauseTimer = () => {
+        setTimerStatus('paused');
+    }
+    
+    const resetTimer = () => {
+        setSecondsRemaining(totalSeconds);
+        setPercentage(100);
+        setTimerStatus('stopped');
+    }
+
 
     // Convert the remaining seconds into minute:second format
     const minutes = Math.floor(secondsRemaining / 60);
@@ -26,10 +43,7 @@ function Timer(props) {
 
     return (
         <div>
-            {/* Timer Display */}
             <div>{`${minutes}:${seconds < 10 ? '0' + seconds : seconds}`}</div>
-
-            {/* Circular Progress SVG */}
             <svg width="120" height="120" viewBox="0 0 120 120">
                 <circle cx="60" cy="60" r="54" stroke="#E6E6E6" strokeWidth="12" fill="none" />
                 <circle 
@@ -42,6 +56,11 @@ function Timer(props) {
                     strokeDasharray={`339.292 ${339.292}`} 
                     strokeDashoffset={`${339.292 * (1 - percentage / 100)}`} />
             </svg>
+            <div>
+                <button onClick = {startTimer}>Start</button>
+                <button onClick = {pauseTimer}>Stop</button>
+                <button onClick = {resetTimer}>Reset</button>
+            </div>
         </div>
     );
 }
