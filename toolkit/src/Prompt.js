@@ -36,14 +36,16 @@ function Prompt() {
     }
 
 
+    function containsOnlyNumbers(str) {
+        return /^\d+$/.test(str);
+    }
     
     // Handle goal submission
     const submitGoal = () => {
-        if(!isValidInput(goalText) ||!isValidInput(actionText)){
+        if (!isValidInput(goalText) || containsOnlyNumbers(goalText) || !isValidInput(actionText) || containsOnlyNumbers(actionText)) {
             alert("Please enter a valid goal and action");
             return;
         }
-    
         // The values for this object are taken in from user input fields
         const details = {
             goalText: goalText,
