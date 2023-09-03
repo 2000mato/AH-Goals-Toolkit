@@ -8,7 +8,7 @@ import Context from "./Context";
 
 function Prompt() {
     // Context allows user input to be sent to context provider
-    const { showPrompt, setShowPrompt, setGoalDetails, setShowGoal } = useContext(Context);
+    const { showPrompt, setShowPrompt, setGoalDetails, setShowGoal, goalText , setGoalText , actionText , setActionText } = useContext(Context);
 
     // Date related states for establishing time period
     const [startDate, setStartDate] = useState(new Date()); 
@@ -18,8 +18,6 @@ function Prompt() {
     const [endDate, setEndDate] = useState(threeMonthsFromNow);
 
     // Goal related states 
-    const [goalText, setGoalText] = useState('');
-    const [actionText, setActionText] = useState('');
 
 
     // Checks if input is valid

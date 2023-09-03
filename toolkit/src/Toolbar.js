@@ -3,12 +3,14 @@ import Context from './Context';
 
 function Toolbar() {
 
-    const {defaultGoalDetails, setGoalDetails, setShowPrompt , setShowGoal} = useContext(Context);
+    const {defaultGoalDetails, setGoalDetails, setShowPrompt , setShowGoal , setGoalText , setActionText} = useContext(Context);
 
     const togglePrompt = () => {
         setShowPrompt(true);
         setGoalDetails(defaultGoalDetails);
         setShowGoal(false);
+        setGoalText(defaultGoalDetails.goalText);
+        setActionText(defaultGoalDetails.actionText);
     } 
 
 

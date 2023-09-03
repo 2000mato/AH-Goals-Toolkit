@@ -8,6 +8,8 @@ const ContextProvider = ({children}) => {
     const [goalDetails, setGoalDetails] = useState({});
     const currentDate = new Date();
     const threeMonthsFromNow = new Date(currentDate.setMonth(currentDate.getMonth() + 3));
+    const [goalText, setGoalText] = useState('');
+    const [actionText, setActionText] = useState('');
 
     const defaultGoalDetails = {
         goalText: '',
@@ -18,7 +20,7 @@ const ContextProvider = ({children}) => {
 
 
     return (
-        <Context.Provider value={{showPrompt, setShowPrompt, goalDetails, defaultGoalDetails, setGoalDetails, showGoal, setShowGoal}}>
+        <Context.Provider value={{showPrompt, setShowPrompt, goalDetails, defaultGoalDetails, setGoalDetails, showGoal, setShowGoal, goalText, setGoalText, actionText, setActionText}}>
             {children}
         </Context.Provider>
     );
