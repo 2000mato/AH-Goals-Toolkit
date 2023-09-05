@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useContext } from "react";
 import "./Prompt.css";
-import Context from "./Context";
+import Context from "./contexts/Context";
 
 
 function Prompt() {

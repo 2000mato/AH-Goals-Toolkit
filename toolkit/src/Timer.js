@@ -1,40 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, { useContext } from "react";
 import "./Timer.css";
+import Context from "./contexts/Context"
 
 function Timer(props) {
-    const initialMinutes = props.initialMinutes || 20; // Set a default value if not provided
-    const totalSeconds = initialMinutes * 60; // Convert minutes to seconds.
-    const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
-    const [percentage, setPercentage] = useState(100);
-    const [timerStatus, setTimerStatus] = useState('stopped'); // possible values: 'stopped', 'running', 'paused'
 
-    useEffect(() => {
-        if (secondsRemaining <= 0 || timerStatus !== 'running') return;
-        const interval = setInterval(() => {
-            setSecondsRemaining(prevSeconds => {
-                const newSeconds = prevSeconds - 1;
-                setPercentage(newSeconds / totalSeconds * 100);
-                return newSeconds;
-            });
-        }, 1000);
-    
-        return () => clearInterval(interval);
-    }, [secondsRemaining, totalSeconds, timerStatus]);
-
-
-    const startTimer = () => {
-        setTimerStatus('running');
-    }
-    
-    const pauseTimer = () => {
-        setTimerStatus('paused');
-    }
-    
-    const resetTimer = () => {
-        setSecondsRemaining(totalSeconds);
-        setPercentage(100);
-        setTimerStatus('stopped');
-    }
+    const { secondsRemaining, setSecondsRemaining,percentage, 
+        setPercentage,timerStatus, setTimerStatus,
+        startTimer, pauseTimer, resetTimer} = useContext(Context);
 
 
     // Convert the remaining seconds into minute:second format

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import Context from './Context';
+import Context from './contexts/Context';
 
 
 function DefinedGoal() {
