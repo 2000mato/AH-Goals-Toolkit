@@ -4,7 +4,7 @@ import Context from './Context';
 
 const TimerContextProvider = ({children}) => {
 
-    const initialMinutes = children.initialMinutes || 20;
+    const initialMinutes = 2;
     const totalSeconds = initialMinutes * 60;
 
     const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
@@ -12,8 +12,10 @@ const TimerContextProvider = ({children}) => {
     const [timerStatus, setTimerStatus] = useState('stopped');
     
     useEffect(() => {
+        // if the timer isn't running, the function to decrement the seconds will not run (duh)
         if (secondsRemaining <= 0 || timerStatus !== 'running') return;
     
+        // every 1000ms , seconds remaining is decreased by 1, the percentage corrsponds to this
         const interval = setInterval(() => {
             setSecondsRemaining(prevSeconds => {
                 const newSeconds = prevSeconds - 1;
@@ -41,6 +43,7 @@ const TimerContextProvider = ({children}) => {
     }
 
     const minutes = Math.floor(secondsRemaining / 60);
+    // seconds left is the remainder from however many seconds are left divided by 60 
     const seconds = secondsRemaining % 60;
 
 
@@ -49,7 +52,7 @@ const TimerContextProvider = ({children}) => {
         <Context.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
-            startTimer, pauseTimer, resetTimer, minutes , seconds}}>
+            startTimer, pauseTimer, resetTimer, minutes , seconds, initialMinutes, totalSeconds}}>
             {children}
         </Context.Provider>
     );
