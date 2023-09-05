@@ -1,6 +1,6 @@
 import './App.css';
 import Prompt from './Prompt';
-import ContextProvider from './ContextProvider';
+import GoalContextProvider from './GoalContextProvider';
 import Toolbar from './Toolbar';
 import DefinedGoals from './DefinedGoal';
 import Timer from './Timer';
@@ -8,12 +8,12 @@ import Timer from './Timer';
 function App() {
   return (
     <div className="App">
-      <ContextProvider >
+      <GoalContextProvider >
         <Toolbar />
         <Timer />
         <DefinedGoals />
         <Prompt />
-      </ContextProvider>
+      </GoalContextProvider>
     </div>
   );
 }

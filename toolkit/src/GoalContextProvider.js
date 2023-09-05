@@ -2,7 +2,7 @@ import React, {useState } from'react';
 
 import Context from './Context';
 
-const ContextProvider = ({children}) => {
+const GoalContextProvider = ({children}) => {
     const [showPrompt, setShowPrompt] = useState(true);
     const [showGoal, setShowGoal] = useState(false);
     const [goalDetails, setGoalDetails] = useState({});
@@ -26,4 +26,4 @@ const ContextProvider = ({children}) => {
     );
 }
 
-export default ContextProvider;
+export default GoalContextProvider;
