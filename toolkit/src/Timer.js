@@ -4,14 +4,10 @@ import Context from "./contexts/Context"
 
 function Timer(props) {
 
-    const { secondsRemaining, setSecondsRemaining,percentage, 
-        setPercentage,timerStatus, setTimerStatus,
-        startTimer, pauseTimer, resetTimer} = useContext(Context);
+    const {percentage, startTimer, pauseTimer, 
+        resetTimer, minutes, seconds } = useContext(Context);
 
 
-    // Convert the remaining seconds into minute:second format
-    const minutes = Math.floor(secondsRemaining / 60);
-    const seconds = secondsRemaining % 60;
 
     return (
         <div>

@@ -49,7 +49,7 @@ const TimerContextProvider = ({children}) => {
         <Context.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
-            startTimer, pauseTimer, resetTimer}}>
+            startTimer, pauseTimer, resetTimer, minutes , seconds}}>
             {children}
         </Context.Provider>
     );
