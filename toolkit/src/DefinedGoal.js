@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import Context from './contexts/Context';
+import GoalContext from './contexts/GoalContext';
 
 
 function DefinedGoal() {
 
-    const { goalDetails, showGoal } = useContext(Context);
+    const { goalDetails, showGoal } = useContext(GoalContext);
 
     if (!showGoal) {
         return null;  // Don't render the DefinedGoal component if showDefinedGoal is false

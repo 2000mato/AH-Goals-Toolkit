@@ -3,12 +3,12 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useContext } from "react";
 import "./Prompt.css";
-import Context from "./contexts/Context";
+import GoalContext from "./contexts/GoalContext";
 
 
 function Prompt() {
     // Context allows user input to be sent to context provider
-    const { showPrompt, setShowPrompt, setGoalDetails, setShowGoal, goalText , setGoalText , actionText , setActionText } = useContext(Context);
+    const { showPrompt, setShowPrompt, setGoalDetails, setShowGoal, goalText , setGoalText , actionText , setActionText } = useContext(GoalContext);
 
     // Date related states for establishing time period
     const [startDate, setStartDate] = useState(new Date()); 

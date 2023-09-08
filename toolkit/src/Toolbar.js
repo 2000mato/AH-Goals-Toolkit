@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
-import Context from './contexts/Context';
+import GoalContext from './contexts/GoalContext';
 
 function Toolbar() {
 
-    const {defaultGoalDetails, setGoalDetails, setShowPrompt , setShowGoal , setGoalText , setActionText} = useContext(Context);
+    const {defaultGoalDetails, setGoalDetails, setShowPrompt , setShowGoal , setGoalText , setActionText} = useContext(GoalContext);
 
     const togglePrompt = () => {
         setShowPrompt(true);

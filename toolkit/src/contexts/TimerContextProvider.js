@@ -1,6 +1,6 @@
 import React, {useState , useEffect } from'react';
 
-import Context from './Context';
+import TimerContext from './TimerContext';
 
 const TimerContextProvider = ({children}) => {
 
@@ -49,12 +49,12 @@ const TimerContextProvider = ({children}) => {
 
 
     return (
-        <Context.Provider value={{    secondsRemaining, setSecondsRemaining,
+        <TimerContext.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
             startTimer, pauseTimer, resetTimer, minutes , seconds, initialMinutes, totalSeconds}}>
             {children}
-        </Context.Provider>
+        </TimerContext.Provider>
     );
 }
 

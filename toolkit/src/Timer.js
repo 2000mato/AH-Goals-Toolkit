@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import "./Timer.css";
-import Context from "./contexts/Context"
+import TimerContext from "./contexts/TimerContext"
 
 function Timer(props) {
 
     const {percentage, startTimer, pauseTimer, 
-        resetTimer, minutes, seconds } = useContext(Context);
+        resetTimer, minutes, seconds } = useContext(TimerContext);
 
 
 

@@ -1,6 +1,6 @@
 import React, {useState } from'react';
 
-import Context from './Context';
+import GoalContext from './GoalContext';
 
 const GoalContextProvider = ({children}) => {
     const [showPrompt, setShowPrompt] = useState(true);
@@ -20,9 +20,9 @@ const GoalContextProvider = ({children}) => {
 
 
     return (
-        <Context.Provider value={{showPrompt, setShowPrompt, goalDetails, defaultGoalDetails, setGoalDetails, showGoal, setShowGoal, goalText, setGoalText, actionText, setActionText}}>
+        <GoalContext.Provider value={{showPrompt, setShowPrompt, goalDetails, defaultGoalDetails, setGoalDetails, showGoal, setShowGoal, goalText, setGoalText, actionText, setActionText}}>
             {children}
-        </Context.Provider>
+        </GoalContext.Provider>
     );
 }
 
