@@ -5,8 +5,7 @@ import TimerContext from './TimerContext';
 const TimerContextProvider = ({children}) => {
 
     const [timerLength, setTimerLength] = useState(90); // 90 as initial value
-    const totalSeconds = timerLength * 60;
-
+    const [totalSeconds, setTotalSeconds] = useState(timerLength * 60);
     const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
     const [percentage, setPercentage] = useState(100);
     const [timerStatus, setTimerStatus] = useState('stopped');
@@ -43,10 +42,11 @@ const TimerContextProvider = ({children}) => {
     }
 
     const setNewTimerLength = (length) => {
-        setTimerLength(length);
-        setSecondsRemaining(length * 60);
-        setPercentage(100);
-        setTimerStatus('stopped');
+        setTimerLength(length);                 
+        const newTotalSeconds = length * 60;    
+        setSecondsRemaining(newTotalSeconds);   
+        setPercentage(100);                     
+        setTimerStatus('stopped');     
     }
 
     const minutes = Math.floor(secondsRemaining / 60);
