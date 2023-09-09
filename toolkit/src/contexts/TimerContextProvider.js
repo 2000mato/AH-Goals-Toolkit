@@ -4,8 +4,8 @@ import TimerContext from './TimerContext';
 
 const TimerContextProvider = ({children}) => {
 
-    const initialMinutes = 2;
-    const totalSeconds = initialMinutes * 60;
+    const [timerLength, setTimerLength] = useState(90); // 90 as initial value
+    const totalSeconds = timerLength * 60;
 
     const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
     const [percentage, setPercentage] = useState(100);
@@ -52,7 +52,7 @@ const TimerContextProvider = ({children}) => {
         <TimerContext.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
-            startTimer, pauseTimer, resetTimer, minutes , seconds, initialMinutes, totalSeconds}}>
+            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds}}>
             {children}
         </TimerContext.Provider>
     );

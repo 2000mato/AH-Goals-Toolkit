@@ -5,9 +5,15 @@ import TimerContext from "./contexts/TimerContext"
 function Timer(props) {
 
     const {percentage, startTimer, pauseTimer, 
-        resetTimer, minutes, seconds } = useContext(TimerContext);
+        resetTimer, minutes, seconds , setTimerLength } = useContext(TimerContext);
 
 
+
+        const handleSubmit = (e) => {
+            e.preventDefault(); // Prevent the default form submission behavior
+            // Do whatever you want here after the user hits Enter
+            // For instance, you might want to start the timer
+        };
 
     return (
         <div>
@@ -28,6 +34,17 @@ function Timer(props) {
                 <button onClick = {startTimer}>Start</button>
                 <button onClick = {pauseTimer}>Stop</button>
                 <button onClick = {resetTimer}>Reset</button>
+                <form onSubmit={handleSubmit}>
+    <input 
+        type="number" 
+        min="1" 
+        max="120" 
+        step="1" 
+        onChange={(e) => setTimerLength(Number(e.target.value))}
+        placeholder="Set New Timer"
+    />
+    <button type="submit">Set Timer</button>
+</form>
             </div>
         </div>
     );
