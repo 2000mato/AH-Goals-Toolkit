@@ -42,6 +42,13 @@ const TimerContextProvider = ({children}) => {
         setTimerStatus('stopped');
     }
 
+    const setNewTimerLength = (length) => {
+        setTimerLength(length);
+        setSecondsRemaining(length * 60);
+        setPercentage(100);
+        setTimerStatus('stopped');
+    }
+
     const minutes = Math.floor(secondsRemaining / 60);
     // seconds left is the remainder from however many seconds are left divided by 60 
     const seconds = secondsRemaining % 60;
@@ -52,7 +59,7 @@ const TimerContextProvider = ({children}) => {
         <TimerContext.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
-            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds}}>
+            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds, setTimerLength , setNewTimerLength}}>
             {children}
         </TimerContext.Provider>
     );
