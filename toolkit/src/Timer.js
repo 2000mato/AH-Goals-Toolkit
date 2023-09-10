@@ -5,7 +5,7 @@ import TimerContext from "./contexts/TimerContext"
 function Timer(props) {
 
     const { percentage, startTimer, pauseTimer, 
-        resetTimer, minutes, seconds ,timerLength, setTimerLength, setNewTimerLength } = useContext(TimerContext);
+        resetTimer, minutes, seconds ,timerLength, setTimerLength, setNewTimerLength, block, setBlock, subBlock, setSubBlock } = useContext(TimerContext);
 
         const handleSubmit = (e) => {
             e.preventDefault();
