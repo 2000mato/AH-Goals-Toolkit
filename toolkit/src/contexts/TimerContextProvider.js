@@ -9,6 +9,7 @@ const TimerContextProvider = ({children}) => {
     const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
     const [percentage, setPercentage] = useState(100);
     const [timerStatus, setTimerStatus] = useState('stopped');
+    const [inputValue, setInputValue] = useState(0)
     
     useEffect(() => {
         // if the timer isn't running, the function to decrement the seconds will not run (duh)
@@ -19,6 +20,7 @@ const TimerContextProvider = ({children}) => {
             setSecondsRemaining(prevSeconds => {
                 const newSeconds = prevSeconds - 1;
                 setPercentage(newSeconds / totalSeconds * 100);
+                console.log(`the new percentage is ${percentage}`)
                 return newSeconds;
             });
         }, 1000);
@@ -41,16 +43,17 @@ const TimerContextProvider = ({children}) => {
         setTimerStatus('stopped');
     }
 
-    const setNewTimerLength = (length) => {
-        setTimerLength(length);                 
-        const newTotalSeconds = length * 60;    
-        setSecondsRemaining(newTotalSeconds);   
-        setPercentage(100);                     
-        setTimerStatus('stopped');     
+    const setNewTimerLength = (lengthInMinutes) => {
+        const newTotalSeconds = lengthInMinutes * 60;
+        setTimerLength(lengthInMinutes);
+        setTotalSeconds(newTotalSeconds);
+        setSecondsRemaining(newTotalSeconds);
+        setPercentage(100);
+        setTimerStatus('stopped');
+        console.log('minutes are ' +minutes + ', seconds are '  + seconds);
     }
 
     const minutes = Math.floor(secondsRemaining / 60);
-    // seconds left is the remainder from however many seconds are left divided by 60 
     const seconds = secondsRemaining % 60;
 
 
@@ -59,7 +62,7 @@ const TimerContextProvider = ({children}) => {
         <TimerContext.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
-            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds, setTimerLength , setNewTimerLength}}>
+            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds, setTimerLength , setNewTimerLength, inputValue, setInputValue}}>
             {children}
         </TimerContext.Provider>
     );
