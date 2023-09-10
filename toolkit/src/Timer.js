@@ -13,11 +13,28 @@ function Timer(props) {
         }
 
 
+        const colors = {
+            1: "#0000FF",
+            2: {
+              0: "#FFFF00",
+              1: "#008000",
+              2: "#00FFFF",
+            },
+            3: "#800080",
+          };
+
+          const getCurrentColor = () => {
+            if (block === 2) {
+                return colors[2][subBlock];
+              }
+              return colors[block];
+          }
+
     return (
         <div>
             <div>{`${minutes}:${seconds < 10 ? '0' + seconds : seconds}`}</div>
             <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="54" stroke="#E6E6E6" strokeWidth="12" fill="none" />
+                <circle cx="60" cy="60" r="54" stroke={getCurrentColor()} strokeWidth="12" fill="none" />
                 <circle 
                     cx="60" 
                     cy="60" 
