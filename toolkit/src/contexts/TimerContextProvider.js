@@ -24,7 +24,6 @@ const TimerContextProvider = ({children}) => {
             setSecondsRemaining(prevSeconds => {
                 const newSeconds = prevSeconds - 1;
                 setPercentage(newSeconds / totalSeconds * 100);
-                console.log(`the new percentage is ${percentage}`)
                 return newSeconds;
             });
         }, 1000);
@@ -54,7 +53,6 @@ const TimerContextProvider = ({children}) => {
         setSecondsRemaining(newTotalSeconds);
         setPercentage(100);
         setTimerStatus('stopped');
-        console.log('minutes are ' +minutes + ', seconds are '  + seconds);
     }
 
     const minutes = Math.floor(secondsRemaining / 60);
