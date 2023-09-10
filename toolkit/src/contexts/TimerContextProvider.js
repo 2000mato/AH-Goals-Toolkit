@@ -14,6 +14,11 @@ const TimerContextProvider = ({children}) => {
     const [percentage, setPercentage] = useState(100);
     // is the timer running ?
     const [timerStatus, setTimerStatus] = useState('stopped');
+    const [block, setBlock] = useState(1);
+    // subBlock divicdes the middle block into smaller blocks
+    const [subBlock, setSubBlock] = useState(0)
+
+
     
     useEffect(() => {
         // if the timer state isn't running, the function to decrement the seconds will not run (duh)
@@ -24,6 +29,28 @@ const TimerContextProvider = ({children}) => {
             setSecondsRemaining(prevSeconds => {
                 const newSeconds = prevSeconds - 1;
                 setPercentage(newSeconds / totalSeconds * 100);
+
+                const firstThreshold = totalSeconds * 0.34;
+                const subBlock = (totalSeconds * 0.33) / 3;
+
+                if (newSeconds <= totalSeconds - firstThreshold && block === 1 ){
+                    setBlock(2);
+                    console.log('entering block 2, subBlock 1')
+                }
+                else if (newSeconds <= totalSeconds - firstThreshold - subBlock && block === 0 ){
+                    setBlock(1);
+                    console.log('entering subBlock 2')
+                }
+                else if (newSeconds <= totalSeconds - firstThreshold - subBlock * 2 && block === 1 ){
+                    setBlock(2);
+                    console.log('entering subBlock 3')
+                }
+                else if (newSeconds <= totalSeconds - firstThreshold - subBlock * 3 && block === 2){
+                    setBlock(3);
+                    setSubBlock(0);
+                    console.log('block 2 complete, entering block 3')
+                }
+
                 return newSeconds;
             });
         }, 1000);
@@ -64,7 +91,7 @@ const TimerContextProvider = ({children}) => {
         <TimerContext.Provider value={{    secondsRemaining, setSecondsRemaining,
             percentage, setPercentage,
             timerStatus, setTimerStatus,
-            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds, setTimerLength , setNewTimerLength}}>
+            startTimer, pauseTimer, resetTimer, minutes , seconds, timerLength, totalSeconds, setTimerLength , setNewTimerLength, block, setBlock, subBlock, setSubBlock}}>
             {children}
         </TimerContext.Provider>
     );
