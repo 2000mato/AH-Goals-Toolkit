@@ -35,35 +35,29 @@ const TimerContextProvider = ({children}) => {
                 // Check for the start of the timer
            // Once time remaining is not totalSeconds, timer has started
             if (block === 1 && secondsRemaining === totalSeconds) {
-                console.log('Timer beginning, entering block 1');
             }
 
             else if (block === 1 && newSeconds <= totalSeconds - firstThreshold) {
                 setBlock(2);
                 setSubBlock(1);
-                console.log(`Transition to block 2, subBlock 1 ` + 'seconds remaining: ' +  secondsRemaining);
             }
 
             else if (block === 2 && subBlock === 1 && newSeconds <= totalSeconds - firstThreshold - subBlockLength) {
                 setSubBlock(2);
-                console.log(`Transition to block 2, subBlock 2 ` + 'seconds remaining: ' +  secondsRemaining);
             }
 
             else if (block === 2 && subBlock === 2 && newSeconds <= totalSeconds - firstThreshold - 2 * subBlockLength) {
                 setSubBlock(3);
-                console.log(`Transition to block 2, subBlock 3 ` + 'seconds remaining: ' +  secondsRemaining);
             }
 
             else if (block === 2 && subBlock === 3 && newSeconds <= totalSeconds - firstThreshold - 3 * subBlockLength) {
                 setBlock(3);
                 setSubBlock(0); // Reset subBlock since it's not relevant in the last block.
-                console.log(`Transition to block 3 ` + 'seconds remaining: ' +  secondsRemaining);
             }
 
             else if (newSeconds <= 0.5) {
                 setBlock(1);  // Starting block
                 setSubBlock(1);  // Starting subBlock
-                console.log('Timer has been reset');
             }
 
                 return newSeconds;
