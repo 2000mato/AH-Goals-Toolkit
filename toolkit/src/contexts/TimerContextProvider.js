@@ -14,7 +14,7 @@ const TimerContextProvider = ({children}) => {
     const [percentage, setPercentage] = useState(100);
     // is the timer running ?
     const [timerStatus, setTimerStatus] = useState('stopped');
-    const [block, setBlock] = useState(1);
+    const [block, setBlock] = useState(0);
     // subBlock divicdes the middle block into smaller blocks
     const [subBlock, setSubBlock] = useState(0)
 
@@ -31,26 +31,35 @@ const TimerContextProvider = ({children}) => {
                 setPercentage(newSeconds / totalSeconds * 100);
 
                 const firstThreshold = totalSeconds * 0.34;
-                const subBlock = (totalSeconds * 0.33) / 3;
+                const subBlock = Math.floor((totalSeconds * 0.33) / 3);
 
+                // once time remaining !== totalSeconds, the timer has started
+                if (block === 0  && secondsRemaining !== totalSeconds){
+                    setBlock(1);
+                    console.log('entering block 1')
+                }
                 if (newSeconds <= totalSeconds - firstThreshold && block === 1 ){
                     setBlock(2);
-                    console.log('entering block 2, subBlock 1')
+                    console.log(`entering block ${block}, subBlock ${subBlock}`)
                 }
                 else if (newSeconds <= totalSeconds - firstThreshold - subBlock && block === 0 ){
                     setBlock(1);
-                    console.log('entering subBlock 2')
+                    console.log(`entering subBlock ${subBlock}`)
                 }
                 else if (newSeconds <= totalSeconds - firstThreshold - subBlock * 2 && block === 1 ){
                     setBlock(2);
-                    console.log('entering subBlock 3')
+                    console.log(`entering subBlock ${subBlock}`)
                 }
                 else if (newSeconds <= totalSeconds - firstThreshold - subBlock * 3 && block === 2){
                     setBlock(3);
                     setSubBlock(0);
                     console.log('block 2 complete, entering block 3')
                 }
-
+                else if ( secondsRemaining <= .5 ){
+                    setBlock(0);
+                    setSubBlock(0);
+                    console.log('timer has been reset')
+                        }
                 return newSeconds;
             });
         }, 1000);
