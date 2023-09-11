@@ -14,58 +14,65 @@ const TimerContextProvider = ({children}) => {
     const [percentage, setPercentage] = useState(100);
     // is the timer running ?
     const [timerStatus, setTimerStatus] = useState('stopped');
-    const [block, setBlock] = useState(0);
+    const [block, setBlock] = useState(1);
     // subBlock divicdes the middle block into smaller blocks
-    const [subBlock, setSubBlock] = useState(0)
+    const [subBlock, setSubBlock] = useState(1)
 
 
     
     useEffect(() => {
-        // if the timer state isn't running, the function to decrement the seconds will not run (duh)
         if (secondsRemaining <= 0 || timerStatus !== 'running') return;
     
-        // every 1000ms , seconds remaining is decreased by 1, the percentage corrsponds to this
         const interval = setInterval(() => {
             setSecondsRemaining(prevSeconds => {
                 const newSeconds = prevSeconds - 1;
                 setPercentage(newSeconds / totalSeconds * 100);
+    
+                const firstThreshold = Math.floor(totalSeconds * 0.34);
+                const secondThreshold = firstThreshold + Math.floor(totalSeconds * 0.33);
+                const subBlockLength = Math.floor(totalSeconds * 0.33 / 3);
+    
+                // Check for the start of the timer
+           // Once time remaining is not totalSeconds, timer has started
+            if (block === 1 && secondsRemaining === totalSeconds) {
+                console.log('Timer beginning, entering block 1');
+            }
 
-                const firstThreshold = totalSeconds * 0.34;
-                const subBlock = Math.floor((totalSeconds * 0.33) / 3);
+            else if (block === 1 && newSeconds <= totalSeconds - firstThreshold) {
+                setBlock(2);
+                setSubBlock(1);
+                console.log(`Transition to block 2, subBlock 1` + secondsRemaining);
+            }
 
-                // once time remaining !== totalSeconds, the timer has started
-                if (block === 0  && secondsRemaining !== totalSeconds){
-                    setBlock(1);
-                    console.log('entering block 1')
-                }
-                if (newSeconds <= totalSeconds - firstThreshold && block === 1 ){
-                    setBlock(2);
-                    console.log(`entering block ${block}, subBlock ${subBlock}`)
-                }
-                else if (newSeconds <= totalSeconds - firstThreshold - subBlock && block === 0 ){
-                    setBlock(1);
-                    console.log(`entering subBlock ${subBlock}`)
-                }
-                else if (newSeconds <= totalSeconds - firstThreshold - subBlock * 2 && block === 1 ){
-                    setBlock(2);
-                    console.log(`entering subBlock ${subBlock}`)
-                }
-                else if (newSeconds <= totalSeconds - firstThreshold - subBlock * 3 && block === 2){
-                    setBlock(3);
-                    setSubBlock(0);
-                    console.log('block 2 complete, entering block 3')
-                }
-                else if ( secondsRemaining <= .5 ){
-                    setBlock(0);
-                    setSubBlock(0);
-                    console.log('timer has been reset')
-                        }
+            else if (block === 2 && subBlock === 1 && newSeconds <= totalSeconds - firstThreshold - subBlockLength) {
+                setSubBlock(2);
+                console.log(`Transition to block 2, subBlock 2` + secondsRemaining);
+            }
+
+            else if (block === 2 && subBlock === 2 && newSeconds <= totalSeconds - firstThreshold - 2 * subBlockLength) {
+                setSubBlock(3);
+                console.log(`Transition to block 2, subBlock 3` + secondsRemaining);
+            }
+
+            else if (block === 2 && subBlock === 3 && newSeconds <= totalSeconds - firstThreshold - 3 * subBlockLength) {
+                setBlock(3);
+                setSubBlock(0); // Reset subBlock since it's not relevant in the last block.
+                console.log(`Transition to block 3` + secondsRemaining);
+            }
+
+            else if (newSeconds <= 0.5) {
+                setBlock(1);  // Starting block
+                setSubBlock(1);  // Starting subBlock
+                console.log('Timer has been reset');
+            }
+
                 return newSeconds;
             });
         }, 1000);
     
-        return () => clearInterval(interval);
-    }, [secondsRemaining, totalSeconds, percentage, timerStatus]);
+        return () => clearInterval(interval);  // Cleanup to clear the interval when the component is unmounted or when secondsRemaining or timerStatus changes.
+    }, [secondsRemaining, timerStatus, block, subBlock, totalSeconds]); // Added dependencies to the useEffect
+    
 
 
     const startTimer = () => {
