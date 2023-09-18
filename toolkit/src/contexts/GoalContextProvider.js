@@ -10,6 +10,9 @@ const GoalContextProvider = ({children}) => {
     const threeMonthsFromNow = new Date(currentDate.setMonth(currentDate.getMonth() + 3));
     const [goalText, setGoalText] = useState('');
     const [actionText, setActionText] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginStatus, setLoginStatus] = useState(false);
 
     const defaultGoalDetails = {
         goalText: '',

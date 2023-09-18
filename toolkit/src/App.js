@@ -5,6 +5,7 @@ import Toolbar from './Toolbar';
 import DefinedGoals from './DefinedGoal';
 import Timer from './Timer';
 import TimerContextProvider from './contexts/TimerContextProvider';
+import Login from './Login';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <TimerContextProvider>
       <GoalContextProvider >
         <Toolbar />
+        <Login />
         <Timer />
         <DefinedGoals />
         <Prompt />
