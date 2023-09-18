@@ -4,7 +4,7 @@ import LoginContext from './contexts/LoginContext';
 
 function Login(){
 
-const {username, setUsername, password, setPassword, loginStatus, setLoginStatus} = useContext(LoginContext);
+const {username, setUsername, password, setPassword, loginStatus, isLoggedIn } = useContext(LoginContext);
  
     const handleSubmit = async (e) => {
         e.preventDefault();
