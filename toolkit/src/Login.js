@@ -1,11 +1,11 @@
+import React, { useContext } from'react';
 import './Login.css'
-import React, { useState } from'react';
+import LoginContext from './contexts/LoginContext';
+
 function Login(){
 
-
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
+const {username, setUsername, password, setPassword, loginStatus, setLoginStatus} = useContext(LoginContext);
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -14,6 +14,8 @@ function Login(){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         });
+
+        console.log(` username is ${username}, password is ${password}`)
 
         // Handle response here (e.g., redirect, show error, etc.)
     };
@@ -31,7 +33,9 @@ function Login(){
         <input type="password" placeholder="Password" value={password} 
         onChange={(e) => setPassword(e.target.value)} required />
         
-        <button type='submit'>Login</button>
+        <button type='submit' >Login</button>
+
+
         
         </form>
         

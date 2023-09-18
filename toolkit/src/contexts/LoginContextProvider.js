@@ -9,7 +9,7 @@ const LoginContexProvider = ({children}) => {
 
 
 
-    const [username, setUsername] = useState('');
+const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 const [loginStatus, setLoginStatus] = useState(false);
 
